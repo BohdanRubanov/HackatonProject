@@ -1,3 +1,4 @@
+# Импортируем кастом тк интер 
 import customtkinter as ctk
 # Класс создания фрейма
 class Frame(ctk.CTkFrame):
