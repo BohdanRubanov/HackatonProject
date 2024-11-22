@@ -21,5 +21,12 @@ class App(ctk.CTk):
         self.resizable(False,False)
         # Указываем название окна
         self.title("makaki")
+        self.button = ctk.CTkButton(
+            master=self,  # Родитель — главное окно
+            text="Нажми меня",  # Текст кнопки
+        
+        )
+        self.button.pack(pady=20, padx=20)  # Размещаем кнопку в главном меню
+
 # Создаем окно и задаем ему цвет 
 app = App(fg_color = "white")
