@@ -1,6 +1,6 @@
 #Импорт кастом тк интера
 import customtkinter as ctk
-from button_module import create_button
+from modules.button_module import create_button
 
 # Создание констант с размерами окна
 APP_WIDTH = 1280
