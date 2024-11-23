@@ -38,7 +38,12 @@ class App(ctk.CTk):
         self.button3.place(x= 1000, y=700)
 
         # Создаем надписи
-        self.label1 = CustomLabel(self, text= "CHOOSE FORMAT", width=300, height=50, text_color="black", font=("Arial", 36))
+        self.label1 = CustomLabel(self,
+            text="CHOOSE FORMAT",
+             width=300,
+            height=50,
+            text_color="black",
+            font=("Arial", 36))
         self.label1.place(x=700, y=600)
 
         self.label2 = CustomLabel(self, text="  Monkey \nAgainstPlag", width=300, height=50,  text_color="black", font=("Arial", 72, "bold"))
