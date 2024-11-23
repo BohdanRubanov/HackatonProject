@@ -26,24 +26,19 @@ class App(ctk.CTk):
         self.title("makaki")
          # Загрузка изображения для кнопки
         self.button1_image = ctk.CTkImage(Image.open("modules\\images\\button1_bg.png"), size=(200, 50))
-        self.button1 = CustomButton(self, text="", image=self.button1_image, fg_color= "transparent", hover_color="white")
+        self.button1 = CustomButton(self, text="", image=self.button1_image, fg_color= "transparent", hover = False)
         self.button1.place(x= 500, y=700)
 
         self.button2_image = ctk.CTkImage(Image.open("modules\\images\\button2_bg.png"), size=(200, 50))
-        self.button2 = CustomButton(self, text="", image=self.button2_image, fg_color= "transparent", hover_color="white")
+        self.button2 = CustomButton(self, text="", image=self.button2_image, fg_color= "transparent", hover = False)
         self.button2.place(x= 750, y=700)
 
         self.button3_image = ctk.CTkImage(Image.open("modules\\images\\button3_bg.png"), size=(200, 50))
-        self.button3 = CustomButton(self, text="", image=self.button3_image, fg_color= "transparent", hover_color="white")
+        self.button3 = CustomButton(self, text="", image=self.button3_image, fg_color= "transparent", hover = False)
         self.button3.place(x= 1000, y=700)
 
         # Создаем надписи
-        self.label1 = CustomLabel(self,
-            text="CHOOSE FORMAT",
-             width=300,
-            height=50,
-            text_color="black",
-            font=("Arial", 36))
+        self.label1 = CustomLabel(self,text="CHOOSE FORMAT",width=300,height=50,text_color="black",font=("Arial", 36))
         self.label1.place(x=700, y=600)
 
         self.label2 = CustomLabel(self, text="  Monkey \nAgainstPlag", width=300, height=50,  text_color="black", font=("Arial", 72, "bold"))
@@ -54,4 +49,4 @@ class App(ctk.CTk):
        
 
 # Создаем окно и задаем ему цвет 
-app = App(fg_color = "white")
+app = App(fg_color = "red")
