@@ -1,6 +1,7 @@
 #Импорт кастом тк интера
 import customtkinter as ctk
 from modules.button_creation import create_button
+from modules.label_creation import create_label
 
 # Создание констант с размерами окна
 APP_WIDTH = 1280
@@ -29,6 +30,9 @@ class App(ctk.CTk):
         self.button2.place(x= 750, y=700)
         self.button3 = create_button(self, text="IMAGE", width=200, height=50)
         self.button3.place(x= 1000, y=700)
+        # Создаем надписи
+        self.label = create_label(self, text="CHOOSE FORMAT", width=300, height=50,  text_color="black")
+        self.label.place(x=700, y=650)
        
 
 # Создаем окно и задаем ему цвет 
