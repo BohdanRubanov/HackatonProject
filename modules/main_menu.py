@@ -25,15 +25,16 @@ class App(ctk.CTk):
         # Указываем название окна
         self.title("makaki")
          # Загрузка изображения для кнопки
-        button_image = ctk.CTkImage(Image.open("modules\\images\\button1_bg.png"), size=(200, 50))
+        resized_image = Image.open("modules\\images\\button1_bg.png").resize((3000, 1000))
+        self.button_image = ctk.CTkImage(resized_image)
         # Создаем кнопки
-        self.button1 = create_button(self, text="", image=button_image )
+        self.button1 = create_button(self, text="", image=self.button_image )
         self.button1.place(x= 500, y=700)
 
-        self.button2 = create_button(self, text="FILE", width=200, height=50)
+        self.button2 = create_button(self, text="FILE")
         self.button2.place(x= 750, y=700)
 
-        self.button3 = create_button(self, text="IMAGE", width=200, height=50)
+        self.button3 = create_button(self, text="IMAGE")
         self.button3.place(x= 1000, y=700)
 
         # Создаем надписи
