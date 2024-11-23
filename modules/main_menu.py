@@ -1,5 +1,6 @@
 #Импорт кастом тк интера
 import customtkinter as ctk
+from button_module import create_button
 
 # Создание констант с размерами окна
 APP_WIDTH = 1280
@@ -21,12 +22,10 @@ class App(ctk.CTk):
         self.resizable(False,False)
         # Указываем название окна
         self.title("makaki")
-        self.button = ctk.CTkButton(
-            master=self,  # Родитель — главное окно
-            text="Нажми меня",  # Текст кнопки
-        
-        )
-        self.button.pack(pady=20, padx=20)  # Размещаем кнопку в главном меню
+        # Создаем кнопки
+        self.button1 = create_button(self)
+        self.button1.place(x=300, y=200)
+       
 
 # Создаем окно и задаем ему цвет 
 app = App(fg_color = "white")
