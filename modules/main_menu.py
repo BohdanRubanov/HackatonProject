@@ -26,7 +26,7 @@ class App(ctk.CTk):
         self.button1 = create_button(self, text="FILE", width=200, height=50)
         self.button1.pack(pady=20, padx=20)
         self.button2 = create_button(self, text="TEXT", width=200, height=50)
-        self.button2.pack(pady=50, padx=50)
+        self.button2.pack(pady=100, padx=50)
        
 
 # Создаем окно и задаем ему цвет 
