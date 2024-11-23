@@ -23,10 +23,12 @@ class App(ctk.CTk):
         # Указываем название окна
         self.title("makaki")
         # Создаем кнопки
-        self.button1 = create_button(self, text="FILE", width=200, height=50)
-        self.button1.pack(pady=20, padx=20)
-        self.button2 = create_button(self, text="TEXT", width=200, height=50)
-        self.button2.pack(pady=100, padx=50)
+        self.button1 = create_button(self, text="TEXT", width=200, height=50)
+        self.button1.place(x= 500, y=700)
+        self.button2 = create_button(self, text="FILE", width=200, height=50)
+        self.button2.place(x= 750, y=700)
+        self.button3 = create_button(self, text="IMAGE", width=200, height=50)
+        self.button3.place(x= 1000, y=700)
        
 
 # Создаем окно и задаем ему цвет 
