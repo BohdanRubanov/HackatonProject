@@ -1,6 +1,6 @@
 #Импорт кастом тк интера
 import customtkinter as ctk
-import button_creation as button_creation
+from button_creation import create_button
 
 # Создание констант с размерами окна
 APP_WIDTH = 1280
@@ -23,8 +23,10 @@ class App(ctk.CTk):
         # Указываем название окна
         self.title("makaki")
         # Создаем кнопки
-        self.button1 = button_creation.create_button(self)
-        self.button1.place(x=300, y=200)
+        self.button1 = create_button(self, text="FILE", width=200, height=50)
+        self.button1.pack(pady=20, padx=20)
+        self.button2 = create_button(self, text="TEXT", width=200, height=50)
+        self.button2.pack(pady=50, padx=50)
        
 
 # Создаем окно и задаем ему цвет 
