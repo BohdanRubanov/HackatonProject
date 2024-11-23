@@ -2,6 +2,7 @@
 import customtkinter as ctk
 from modules.button_creation import create_button
 from modules.label_creation import create_label
+from PIL import Image
 
 # Создание констант с размерами окна
 APP_WIDTH = 1280
@@ -23,18 +24,25 @@ class App(ctk.CTk):
         self.resizable(False,False)
         # Указываем название окна
         self.title("makaki")
+         # Загрузка изображения для кнопки
+        button_image = ctk.CTkImage(Image.open("modules\\images\\button1_bg.png"), size=(200, 50))
         # Создаем кнопки
-        self.button1 = create_button(self, text="TEXT", width=200, height=50)
+        self.button1 = create_button(self, text="", image=button_image )
         self.button1.place(x= 500, y=700)
+
         self.button2 = create_button(self, text="FILE", width=200, height=50)
         self.button2.place(x= 750, y=700)
+
         self.button3 = create_button(self, text="IMAGE", width=200, height=50)
         self.button3.place(x= 1000, y=700)
+
         # Создаем надписи
         self.label1 = create_label(self, text="CHOOSE FORMAT", width=300, height=50,  text_color="black", font=("Arial", 28))
         self.label1.place(x=700, y=600)
+
         self.label2 = create_label(self, text="  Monkey \nAgainstPlag", width=300, height=50,  text_color="black", font=("Arial", 72, "bold"))
         self.label2.place(x=700, y=50)
+
         self.label3 = create_label(self, text="Are you a teacher and want to check\nyour student`s work for plagiarism?\nSo this app is for you! In a couple\nof clicks, our program will check the\nstudent`s work and give you an answer.", width=300, height=50,  text_color="black", font=("Arial", 24), anchor="e")
         self.label3.place(x=700, y=300)
        
