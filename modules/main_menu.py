@@ -102,21 +102,30 @@ class App(ctk.CTk):
   
         self.input_text_window2= ctk.CTkImage(Image.open("modules\\images\\text_input.png"), size=(451, 516))
         self.input_text2 = ctk.CTkEntry(self.toplevel_window_with_image, width=451, height= 516, fg_color="#D4DEE6")
-        self.input_text2.place(x = 414, y=70)
+        self.input_text2.place(x = 414, y=30)
         
         self.self.label1_image=ctk.CTkLabel1(self.toplevel_window_with_image,)
         self.label1_image.place(x = 0, y=0)
+
+
+
 
     def new_window_with_file(self):
         self.toplevel_window_with_file = ToplevelWindow(self) 
         self.toplevel_window_with_file.geometry(f"{self.APP_WIDTH}x{self.APP_HEIGHT}+{self.X}+{self.Y}")
         self.withdraw()
+
         self.button_image_start3= ctk.CTkImage(Image.open("modules\\images\\button_start.png"), size=(282, 64))
         self.button_start3 = CustomButton(self.toplevel_window_with_file, image= self.button_image_start3)
         self.button_start3.place(x = 499, y=666)
         
+        self.input_text_window3= ctk.CTkImage(Image.open("modules\\images\\text_input.png"), size =(451, 516))
+        self.input_text2 = ctk.CTkEntry(self.toplevel_window_with_image, width=451, height= 516, fg_color="#D4DEE6", text_color="black", placeholder_text_color="#000000")
+        self.input_text2.place(x = 414, y=30)
+
         self.upload_button=CustomButton(self.toplevel_window_with_file, fg_color="#D4DEE6", command=self.load_file )
-        self.upload_button.place(x=200, y=200)
+        self.upload_button.place(x=0, y=0)
+
     def load_file(self):
         file_path = filedialog.askopenfilename(
         title="Выберите текстовый файл",
