@@ -9,8 +9,6 @@ class CustomButton(ctk.CTkButton):
                          image=image, 
                          hover=hover,
                          fg_color=fg_color, 
-                         border_width=0,
-                         corner_radius=21,
                          text_color=text_color,
                          font=("Jura",32),
                          **kwargs)

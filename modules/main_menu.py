@@ -38,10 +38,8 @@ class App(ctk.CTk):
         self.button1 = CustomButton(self.main_frame, command = self.new_window_with_text, text="TEXT")
         self.button1.place(x= 530, y=670)
         
-    
-
         
-        self.button2 = CustomButton(self.main_frame, text="FILE",  command = self.new_window_with_file)
+        self.button2 = CustomButton(self.main_frame, text="FILE", command = self.new_window_with_file)
         self.button2.place(x= 770, y=670)
 
          
@@ -157,6 +155,10 @@ class App(ctk.CTk):
         self.toplevel_window_with_result = ToplevelWindow(self) 
         self.toplevel_window_with_result.geometry(f"{self.APP_WIDTH}x{self.APP_HEIGHT}+{self.X}+{self.Y}")                 
         self.toplevel_window_with_file.withdraw()
+
+        self.image_back_result= ctk.CTkImage(Image.open("modules\\images\\result.png"), size= (1280, 832))
+        self.label1_image_result=ctk.CTkLabel(self.toplevel_window_with_result, image= self.image_back_result, text="" )
+        self.label1_image_result.place(x = 0, y=0)
         
         
 
