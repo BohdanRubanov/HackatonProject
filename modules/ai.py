@@ -4,7 +4,21 @@ client = Client()
 # question = input("Введите свой вопрос")
 response = client.chat.completions.create(
     model="gpt-4o-mini",
-    messages=[{"role": "user", "content": "Проверь, есть ли у этого текста признаки автоматической генерации? Мавпа – це ссавець, найбільш близька тварина за будовою до людини, відноситься до загону примати. Сучасна класифікація виділяє понад 400 видів мавп або вищих приматів. В основному вони живуть в Африці, Південній Америці. Деякі мавпочки живуть в зоопарках, виступають в цирках, а у когось це домашня тварина. Мавпочки, як і люди, спілкуються між собою. Спілкування мавп відбувається за допомогою міміки і звуків. Особливо гучними і балакучими вважаються капуцини.Опис мавп Представники загону приматів мають різну вагу і зріст."}],
+    messages=[{"role": "user", "content": "У тебя есть доступ в интернет?"}],
 
 )
 print(response.choices[0].message.content)
+
+# from langchain.chains import LLMChain
+# from langchain.prompts import PromptTemplate
+# from langchain.llms import OpenAI
+
+# llm = OpenAI(temperature=0.9, model_name="text-davinci-003")
+# prompt = PromptTemplate(
+#     input_variables=["question"],
+#     template="What is the answer to: {question}?",
+# )
+# chain = LLMChain(llm=llm, prompt=prompt)
+
+# result = chain.run("Какая температура в Париже сейчас?")
+# print(result)
