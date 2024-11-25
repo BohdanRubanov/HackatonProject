@@ -124,8 +124,8 @@ class App(ctk.CTk):
         self.input_text3 = ctk.CTkEntry(self.toplevel_window_with_file, width=451, height= 516, fg_color="#D4DEE6", text_color="black")
         self.input_text3.place(x = 414, y=30)
 
-        self.image_back3= ctk.CTkImage(Image.open("modules\\images\\background_image_for_file.png"), size= (1280, 832))
-        self.label_image3=ctk.CTkLabel(self.new_window_with_file, image=self.image_back3, text="")
+        self.image_back3= ctk.CTkImage(Image.open("modules\\images\\back_for_file.png"), size= (1280, 832))
+        self.label_image3=ctk.CTkLabel(self.toplevel_window_with_file, image=self.image_back3, text="")
         self.label_image3.place(x=0, y=0)
 
         self.button_start3.lift()
