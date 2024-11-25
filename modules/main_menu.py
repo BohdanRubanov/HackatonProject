@@ -104,13 +104,14 @@ class App(ctk.CTk):
         self.input_text2 = ctk.CTkEntry(self.toplevel_window_with_image, width=451, height= 516, fg_color="#D4DEE6")
         self.input_text2.place(x = 414, y=30)
         
-        self.self.label1_image=ctk.CTkLabel1(self.toplevel_window_with_image,)
+        self.label1_image=ctk.CTkLabel(self.toplevel_window_with_image,)
         self.label1_image.place(x = 0, y=0)
 
 
 
 
     def new_window_with_file(self):
+
         self.toplevel_window_with_file = ToplevelWindow(self) 
         self.toplevel_window_with_file.geometry(f"{self.APP_WIDTH}x{self.APP_HEIGHT}+{self.X}+{self.Y}")
         self.withdraw()
@@ -120,8 +121,15 @@ class App(ctk.CTk):
         self.button_start3.place(x = 499, y=666)
         
         self.input_text_window3= ctk.CTkImage(Image.open("modules\\images\\text_input.png"), size =(451, 516))
-        self.input_text2 = ctk.CTkEntry(self.toplevel_window_with_image, width=451, height= 516, fg_color="#D4DEE6", text_color="black", placeholder_text_color="#000000")
-        self.input_text2.place(x = 414, y=30)
+        self.input_text3 = ctk.CTkEntry(self.toplevel_window_with_file, width=451, height= 516, fg_color="#D4DEE6", text_color="black")
+        self.input_text3.place(x = 414, y=30)
+
+        self.image_back3= ctk.CTkImage(Image.open("modules\\images\\background_image_for_file.png"), size= (1280, 832))
+        self.label_image3=ctk.CTkLabel(self.new_window_with_file, image=self.image_back3, text="")
+        self.label_image3.place(x=0, y=0)
+
+        self.button_start3.lift()
+        self.input_text3.lift()
 
         self.upload_button=CustomButton(self.toplevel_window_with_file, fg_color="#D4DEE6", command=self.load_file )
         self.upload_button.place(x=0, y=0)
@@ -136,7 +144,7 @@ class App(ctk.CTk):
                 with open(file_path, "r", encoding="utf-8") as file:
                     content = file.read()
             # Вставка текста в текстовое поле
-                self.textbox.delete("1.0", "end")  # Очистить текстовое поле
+                self.textbox.delete("1.0", "end")  # Очистить текстовое полеcd
                 self.textbox.insert("1.0", content)  # Вставить текст
             except Exception as e:
                 print(f"Ошибка при чтении файла: {e}")
