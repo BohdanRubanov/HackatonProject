@@ -5,6 +5,8 @@ from modules.label_creation import CustomLabel
 from modules.new_windows import ToplevelWindow
 from PIL import Image, ImageTk
 from tkinter import filedialog
+from docx import Document
+import PyPDF2
 
 # Создание констант с размерами окна
 APP_WIDTH = 1280
@@ -32,11 +34,10 @@ class App(ctk.CTk):
         self.main_frame.pack(fill="both", expand=True)
          # Загрузка изображения для кнопки
          
+        
         self.button1 = CustomButton(self.main_frame, command = self.new_window_with_text, text="TEXT")
         self.button1.place(x= 530, y=670)
         
-    
-
         
         self.button2 = CustomButton(self.main_frame, text="FILE", command = self.new_window_with_file)
         self.button2.place(x= 770, y=670)
@@ -132,29 +133,54 @@ class App(ctk.CTk):
         self.toplevel_window_with_file.geometry(f"{self.APP_WIDTH}x{self.APP_HEIGHT}+{self.X}+{self.Y}")
         self.withdraw()
         self.button_image_start3= ctk.CTkImage(Image.open("modules\\images\\button_start.png"), size=(282, 64))
-        self.button_start3 = CustomButton(self.toplevel_window_with_file, image= self.button_image_start3)
+        self.button_start3 = CustomButton(self.toplevel_window_with_file, image= self.button_image_start3, command=self.new_window_with_result )
         self.button_start3.place(x = 499, y=666)
+
         
-        self.upload_button=CustomButton(self.toplevel_window_with_file, fg_color="#D4DEE6", command=self.load_file )
-        self.upload_button.place(x=200, y=200)
+        self.input_text3 = ctk.CTkTextbox(self.toplevel_window_with_file, width=451, height=516, fg_color="#D4DEE6", text_color="black", wrap="word")
+        self.input_text3.place(x = 414, y=30)
+        
+        self.upload_button=CustomButton(self.toplevel_window_with_file,text="+",width=50, height=50, fg_color="#D4DEE6", command=self.load_file )
+        self.upload_button.place(x=390, y=680)
     def load_file(self):
-        file_path = filedialog.askopenfilename(
-        title="Выберите текстовый файл",
-        filetypes=[("Text Files", "*.txt"), ("All Files", "*.*")])
-        if file_path:
-            try:
-            # Чтение содержимого файла
-                with open(file_path, "r", encoding="utf-8") as file:
-                    content = file.read()
-            # Вставка текста в текстовое поле
-                self.textbox.delete("1.0", "end")  # Очистить текстовое поле
-                self.textbox.insert("1.0", content)  # Вставить текст
-            except Exception as e:
-                print(f"Ошибка при чтении файла: {e}")
+            file_path = filedialog.askopenfilename(title="Выберите файл",filetypes=[("Text Files", "*.txt"),("PDF Files", "*.pdf"), ("Word Documents", "*.docx"), ("All Files", "*.*")])
+            if file_path:
+                try:
+                    if file_path.endswith(".txt"):
+                        # Чтение текстового файла
+                        with open(file_path, "r", encoding="utf-8") as file:
+                            content = file.read()
+                    elif file_path.endswith(".docx"):
+                        # Чтение Word-документа
+                        doc = Document(file_path)
+                        content = "\n".join([para.text for para in doc.paragraphs])
+                    elif file_path.endswith(".pdf"):
+                
+                        with open(file_path, "rb") as file:
+                            reader = PyPDF2.PdfReader(file)
+                            content = ""
+                            for page in reader.pages:
+                                content += page.extract_text()
+                    else:
+                        print("Неподдерживаемый формат файла")
+                        return
+
+                    # Очистка и вставка текста в input_text3
+                    self.input_text3.delete("1.0", "end")  # Очистить текстовое поле
+                    self.input_text3.insert("1.0", content)  # Вставить текст
+
+                except Exception as e:
+                    print(f"Ошибка при чтении файла: {e}")
+    def new_window_with_result(self):
+        self.toplevel_window_with_result = ToplevelWindow(self) 
+        self.toplevel_window_with_result.geometry(f"{self.APP_WIDTH}x{self.APP_HEIGHT}+{self.X}+{self.Y}")                 
+        self.toplevel_window_with_file.withdraw()
+
+        self.image_back_result= ctk.CTkImage(Image.open("modules\\images\\result.png"), size= (1280, 832))
+        self.label1_image_result=ctk.CTkLabel(self.toplevel_window_with_result, image= self.image_back_result, text="" )
+        self.label1_image_result.place(x = 0, y=0)
         
-        self.input_text_window3= ctk.CTkImage(Image.open("modules\\images\\text_input.png"), size=(451, 516))
-        self.input_text3 = ctk.CTkEntry(self.toplevel_window_with_file, width=451, height= 516, fg_color="#D4DEE6")
-        #self.input_text3.place(rely = 0.1, relx=0.1)
+        
 
    
 
