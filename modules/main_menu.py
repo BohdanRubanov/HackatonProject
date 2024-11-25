@@ -72,18 +72,19 @@ class App(ctk.CTk):
             self.withdraw()
             
             self.button_image_start= ctk.CTkImage(Image.open("modules\\images\\button_start.png"), size=(282, 64))
-            self.button_start = CustomButton(self.toplevel_window_with_text, image= self.button_image_start)
+            self.button_start = CustomButton(self.toplevel_window_with_text, image= self.button_image_start, command=self.new_window_with_text_result)
             self.button_start.place(x = 499, y=666)
             
             self.input_text_window= ctk.CTkImage(Image.open("modules\\images\\text_input.png"), size=(451, 516))
-            self.input_text = ctk.CTkEntry(self.toplevel_window_with_text, width=451, height= 516, fg_color="#D4DEE6", text_color="black", placeholder_text_color="#000000")
-            self.input_text.place(x = 414, y=30)
+            self.input_text = ctk.CTkTextbox(self.toplevel_window_with_text, width=451, height=516, fg_color="#D4DEE6", text_color="black", wrap="word")
+            self.input_text.place(x = 414, y=85)
 
             self.image_back= ctk.CTkImage(Image.open("modules\\images\\background_image_for_second_frame.png"), size= (1280, 832))
             #путь к фрей
             self.label_image= ctk.CTkLabel(self.toplevel_window_with_text, image= self.image_back, text="")
             self.label_image.place(x= 0, y=0)
             
+            self.input_text.focus_set()
             self.button_start.lift()
             self.input_text.lift()
             
@@ -98,19 +99,19 @@ class App(ctk.CTk):
         self.withdraw()
         
         self.button_image_start2= ctk.CTkImage(Image.open("modules\\images\\button_start.png"), size=(282, 64))
-        self.button_start2 = CustomButton(self.toplevel_window_with_image, image= self.button_image_start2)
+        self.button_start2 = CustomButton(self.toplevel_window_with_image, image= self.button_image_start2, command = self.new_window_with_image_result)
         self.button_start2.place(x = 499, y=666)
   
         self.input_text_window2= ctk.CTkImage(Image.open("modules\\images\\text_input.png"), size=(451, 516))
         self.input_text2 = ctk.CTkEntry(self.toplevel_window_with_image, width=451, height= 516, fg_color="#D4DEE6")
-        self.input_text2.place(x = 415.5, y=80)
+        self.input_text2.place(x = 415.5, y=85)
         
         self.image_back2= ctk.CTkImage(Image.open("modules\\images\\background_image_for_second_frame.png"), size= (1280, 832))
         self.label_image= ctk.CTkLabel(self.toplevel_window_with_image, image= self.image_back2, text="")
         self.label_image.place(x= 0, y=0)
         
-        self.upload_button2=CustomButton(self.toplevel_window_with_image, fg_color="#D4DEE6", command=self.load_image )
-        self.upload_button2.place(x = 415.5, y=80)
+        self.upload_button2=CustomButton(self.toplevel_window_with_image, fg_color="#D4DEE6",text="+",width=50, height=50, command=self.load_image )
+        self.upload_button2.place(x=390, y=680)
         
         self.button_start2.lift()
         self.input_text2.lift()
@@ -133,12 +134,12 @@ class App(ctk.CTk):
         self.toplevel_window_with_file.geometry(f"{self.APP_WIDTH}x{self.APP_HEIGHT}+{self.X}+{self.Y}")
         self.withdraw()
         self.button_image_start3= ctk.CTkImage(Image.open("modules\\images\\button_start.png"), size=(282, 64))
-        self.button_start3 = CustomButton(self.toplevel_window_with_file, image= self.button_image_start3, command=self.new_window_with_result )
+        self.button_start3 = CustomButton(self.toplevel_window_with_file, image= self.button_image_start3, command=self.new_window_with_file_result )
         self.button_start3.place(x = 499, y=666)
 
         
         self.input_text3 = ctk.CTkTextbox(self.toplevel_window_with_file, width=451, height=516, fg_color="#D4DEE6", text_color="black", wrap="word")
-        self.input_text3.place(x = 414, y=30)
+        self.input_text3.place(x = 414, y=85)
         
         self.upload_button=CustomButton(self.toplevel_window_with_file,text="+",width=50, height=50, fg_color="#D4DEE6", command=self.load_file )
         self.upload_button.place(x=390, y=680)
@@ -171,14 +172,53 @@ class App(ctk.CTk):
 
                 except Exception as e:
                     print(f"Ошибка при чтении файла: {e}")
-    def new_window_with_result(self):
+    
+    def new_window_with_text_result(self):
+        self.toplevel_window_with_text_result = ToplevelWindow(self) 
+        self.toplevel_window_with_text_result.geometry(f"{self.APP_WIDTH}x{self.APP_HEIGHT}+{self.X}+{self.Y}")    
+        text = self.input_text.get("1.0","end")             
+        self.toplevel_window_with_text.withdraw()
+
+        self.image1_back_result= ctk.CTkImage(Image.open("modules\\images\\result_bg.jpg"), size= (1280, 832))
+        self.label1_image_result=ctk.CTkLabel(self.toplevel_window_with_text_result, image= self.image1_back_result, text="" )
+        self.label1_image_result.place(x = 0, y=0)
+
+        self.input_text1_result = ctk.CTkTextbox(self.toplevel_window_with_text_result, width=451, height=516, fg_color="#D4DEE6", text_color="black", wrap="word")
+        self.input_text1_result.place(x = 415.5, y=85)
+        self.input_text1_result.insert("1.0", text)
+        self.input_text1_result.lift()
+
+        self.input_text11_result = ctk.CTkEntry(self.toplevel_window_with_text_result, width=451, height= 100, fg_color="#D4DEE6")
+        self.input_text11_result.place(x = 415.5, y=666)
+        self.input_text11_result.lift()
+
+    def new_window_with_image_result(self):
+        self.toplevel_window_with_image_result = ToplevelWindow(self) 
+        self.toplevel_window_with_image_result.geometry(f"{self.APP_WIDTH}x{self.APP_HEIGHT}+{self.X}+{self.Y}")     
+        
+        self.toplevel_window_with_image.withdraw()
+
+        self.image3_back_result= ctk.CTkImage(Image.open("modules\\images\\result_bg.jpg"), size= (1280, 832))
+        self.label3_image_result=ctk.CTkLabel(self.toplevel_window_with_image_result, image= self.image3_back_result, text="" )
+        self.label3_image_result.place(x = 0, y=0)
+
+        self.input_text2_result = ctk.CTkLabel(self.toplevel_window_with_image_result, width=451, height= 516, fg_color="#D4DEE6",image=self.input_text_window2, text="")
+        self.input_text2_result.place(x = 415.5, y=85)
+        self.input_text2_result.lift()
+
+        self.input_text21_result = ctk.CTkEntry(self.toplevel_window_with_image_result, width=451, height= 100, fg_color="#D4DEE6")
+        self.input_text21_result.place(x = 415.5, y=666)
+        self.input_text21_result.lift()
+
+
+    def new_window_with_file_result(self):
         self.toplevel_window_with_result = ToplevelWindow(self) 
         self.toplevel_window_with_result.geometry(f"{self.APP_WIDTH}x{self.APP_HEIGHT}+{self.X}+{self.Y}")                 
         self.toplevel_window_with_file.withdraw()
 
-        self.image_back_result= ctk.CTkImage(Image.open("modules\\images\\result.png"), size= (1280, 832))
-        self.label1_image_result=ctk.CTkLabel(self.toplevel_window_with_result, image= self.image_back_result, text="" )
-        self.label1_image_result.place(x = 0, y=0)
+        self.image2_back_result= ctk.CTkImage(Image.open("modules\\images\\result_bg.jpg"), size= (1280, 832))
+        self.label2_image_result=ctk.CTkLabel(self.toplevel_window_with_result, image= self.image2_back_result, text="" )
+        self.label2_image_result.place(x = 0, y=0)
         
         
 
