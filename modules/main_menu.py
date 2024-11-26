@@ -150,25 +150,25 @@ class App(ctk.CTk):
                     if file_path.endswith(".txt"):
                         # Чтение текстового файла
                         with open(file_path, "r", encoding="utf-8") as file:
-                            content = file.read()
+                            self.content = file.read()
                     elif file_path.endswith(".docx"):
                         # Чтение Word-документа
                         doc = Document(file_path)
-                        content = "\n".join([para.text for para in doc.paragraphs])
+                        self.content = "\n".join([para.text for para in doc.paragraphs])
                     elif file_path.endswith(".pdf"):
                 
                         with open(file_path, "rb") as file:
                             reader = PyPDF2.PdfReader(file)
-                            content = ""
+                            self.content = ""
                             for page in reader.pages:
-                                content += page.extract_text()
+                                self.content += page.extract_text()
                     else:
                         print("Неподдерживаемый формат файла")
                         return
 
                     # Очистка и вставка текста в input_text3
                     self.input_text3.delete("1.0", "end")  # Очистить текстовое поле
-                    self.input_text3.insert("1.0", content)  # Вставить текст
+                    self.input_text3.insert("1.0", self.content)  # Вставить текст
 
                 except Exception as e:
                     print(f"Ошибка при чтении файла: {e}")
@@ -176,10 +176,23 @@ class App(ctk.CTk):
         self.toplevel_window_with_result = ToplevelWindow(self) 
         self.toplevel_window_with_result.geometry(f"{self.APP_WIDTH}x{self.APP_HEIGHT}+{self.X}+{self.Y}")                 
         self.toplevel_window_with_file.withdraw()
-
+        
+        
         self.image_back_result= ctk.CTkImage(Image.open("modules\\images\\result.png"), size= (1280, 832))
         self.label1_image_result=ctk.CTkLabel(self.toplevel_window_with_result, image= self.image_back_result, text="" )
         self.label1_image_result.place(x = 0, y=0)
+        
+        # self.input_text_result1= ctk.CTkImage(Image.open("modules\\images\\text_input.png"), size=(451, 516))
+        # self.input_text_result = ctk.CTkEntry(self.toplevel_window_with_result, width=451, height= 516, fg_color="#D4DEE6", text_color="black")
+        # self.input_text_result.place(x = 415.5, y=80)
+        
+        
+        self.result_for_file = ctk.CTkLabel(self.toplevel_window_with_result, text= self.content, fg_color="white", text_color= "black")
+        self.result_for_file.place(x = 415.5, y=80)
+        
+        # self.input_text_result.lift()
+        # self.result_for_file.lift()
+        
         
         
 
