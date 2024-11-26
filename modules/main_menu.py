@@ -144,7 +144,8 @@ class App(ctk.CTk):
         self.comeback_button=CustomButton(self.toplevel_window_with_file,width=50, height=50, fg_color="#D4DEE6", command=self.load_file )
         self.comeback_button.place(x=290, y=680)
         
-        self.upload_button=CustomButton(self.toplevel_window_with_file,text="+",width=50, height=50, fg_color="#D4DEE6", command=self.load_file )
+        self.download_image= ctk.CTkImage(Image.open("modules\\images\\download.png"), size=(50, 50))
+        self.upload_button=CustomButton(self.toplevel_window_with_file,width=50, height=50,image=self.download_image, fg_color="#D4DEE6", command=self.load_file )
         self.upload_button.place(x=390, y=680)
     def load_file(self):
             file_path = filedialog.askopenfilename(title="Выберите файл",filetypes=[("Text Files", "*.txt"),("PDF Files", "*.pdf"), ("Word Documents", "*.docx"), ("All Files", "*.*")])
