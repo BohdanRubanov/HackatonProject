@@ -230,7 +230,7 @@ class App(ctk.CTk):
         self.input_text2 = ctk.CTkEntry(self.toplevel_window_with_image, width=451, height= 516, fg_color="#D4DEE6")
         self.input_text2.place(x = 415.5, y=85)
         
-        self.image_back2= ctk.CTkImage(Image.open("modules\\images\\background_image_for_second_frame.png"), size= (1280, 832))
+        self.image_back2= ctk.CTkImage(Image.open("modules\\images\\back_for_image.png"), size= (1280, 832))
         self.label_image= ctk.CTkLabel(self.toplevel_window_with_image, image= self.image_back2, text="")
         self.label_image.place(x= 0, y=0)
         
