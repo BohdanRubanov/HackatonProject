@@ -45,8 +45,10 @@ class App(ctk.CTk):
          
         self.button3 = CustomButton(self.main_frame, text="IMAGE", command = self.new_window_with_image)
         self.button3.place(x= 1010, y=670)
-        
- 
+
+        self.button_image = Image.open("modules\\images\\image.png")
+        self.button4 = CustomButton(self.main_frame, image=self.button_image)
+        self.button3.place(x= 770, y=750)
 
         self.bg_image = Image.open("modules\\images\\new_menu_frame.png")
         self.bg_image= self.bg_image.resize((self.winfo_width(), self.winfo_height()))
@@ -101,7 +103,7 @@ class App(ctk.CTk):
             # Отримуємо текст із буфера обміну
             clipboard_text = self.root.clipboard_get()
             self.input_text.insert("insert", clipboard_text)
-            
+
     def new_window_with_image(self):
         self.toplevel_window_with_image = ToplevelWindow(self, width= 451, height= 516) 
         self.toplevel_window_with_image.geometry(f"{self.APP_WIDTH}x{self.APP_HEIGHT}+{self.X}+{self.Y}")
