@@ -140,6 +140,9 @@ class App(ctk.CTk):
         
         self.input_text3 = ctk.CTkTextbox(self.toplevel_window_with_file, width=451, height=516, fg_color="#D4DEE6", text_color="black", wrap="word")
         self.input_text3.place(x = 414, y=85)
+
+        self.comeback_button=CustomButton(self.toplevel_window_with_file,width=50, height=50, fg_color="#D4DEE6", command=self.load_file )
+        self.comeback_button.place(x=290, y=680)
         
         self.upload_button=CustomButton(self.toplevel_window_with_file,text="+",width=50, height=50, fg_color="#D4DEE6", command=self.load_file )
         self.upload_button.place(x=390, y=680)
