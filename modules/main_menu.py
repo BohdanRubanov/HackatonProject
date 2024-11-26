@@ -36,19 +36,19 @@ class App(ctk.CTk):
          
         
         self.button1 = CustomButton(self.main_frame, command = self.new_window_with_text, text="TEXT")
-        self.button1.place(x= 530, y=670)
+        self.button1.place(x= 530, y=650)
         
         
         self.button2 = CustomButton(self.main_frame, text="FILE", command = self.new_window_with_file)
-        self.button2.place(x= 770, y=670)
+        self.button2.place(x= 1010, y=650)
 
          
         self.button3 = CustomButton(self.main_frame, text="IMAGE", command = self.new_window_with_image)
-        self.button3.place(x= 1010, y=670)
+        self.button3.place(x= 890, y=720)
 
         self.button_image = ctk.CTkImage(Image.open("modules\\images\\image.png"), size=(200,30))
-        self.button4 = CustomButton(self.main_frame, text="COMPARISON", command=self.new_window_with_comparison)
-        self.button4.place(x= 755, y=520)
+        self.button4 = CustomButton(self.main_frame, text="COMPARE", command=self.new_window_with_comparison)
+        self.button4.place(x= 640, y=720)
 
         self.bg_image = Image.open("modules\\images\\new_menu_frame.png")
         self.bg_image= self.bg_image.resize((self.winfo_width(), self.winfo_height()))
@@ -79,7 +79,7 @@ class App(ctk.CTk):
             self.label_image4.place(x= 0, y=0)
 
             self.button_image_start= ctk.CTkImage(Image.open("modules\\images\\button_start.png"), size=(282, 64))
-            self.button_start4 = CustomButton(self.toplevel_window_with_comparison, image= self.button_image_start, command=self.new_window_with_comparison_result)
+            self.button_start4 = CustomButton(self.toplevel_window_with_comparison,fg_color="#282C43" ,image= self.button_image_start, command=self.new_window_with_comparison_result)
             self.button_start4.place(x = 489, y=706)
             self.button_start4.lift()
 
@@ -91,9 +91,9 @@ class App(ctk.CTk):
             self.input_text4_2.place(x = 750, y=140)
             self.input_text4_2.lift()
 
-            self.home_image= ctk.CTkImage(Image.open("modules\\images\\home.png"), size=(50, 50))
-            self.comeback4_1_button=CustomButton(self.toplevel_window_with_comparison,width=50, height=50, image = self.home_image, fg_color="#D4DEE6", command = self.comeback4_1 )
-            self.comeback4_1_button.place(x=380, y=720)
+            self.home_image= ctk.CTkImage(Image.open("modules\\images\\home.png"), size=(100, 20))
+            self.comeback4_1_button=CustomButton(self.toplevel_window_with_comparison,width=100, height=20, image = self.home_image, fg_color="#D4DEE6", command = self.comeback4_1 )
+            self.comeback4_1_button.place(x=50, y=70)
             self.comeback4_1_button.lift()
 
             self.download_image= ctk.CTkImage(Image.open("modules\\images\\download.png"), size=(50, 50))
@@ -197,9 +197,9 @@ class App(ctk.CTk):
             self.input_text4_3_result.place(x = 489, y=706)
             self.input_text4_3_result.lift()
 
-            self.home_image= ctk.CTkImage(Image.open("modules\\images\\home.png"), size=(50, 50))
-            self.comeback4_1_button_result=CustomButton(self.toplevel_window_with_comparison_result,width=50, height=50, image = self.home_image, fg_color="#D4DEE6", command = self.comeback4_1_result )
-            self.comeback4_1_button_result.place(x=380, y=710)
+            self.home_image= ctk.CTkImage(Image.open("modules\\images\\home.png"), size=(100, 20))
+            self.comeback4_1_button_result=CustomButton(self.toplevel_window_with_comparison_result,width=100, height=20, image = self.home_image, fg_color="#D4DEE6", command = self.comeback4_1_result )
+            self.comeback4_1_button_result.place(x=50, y=70)
             self.comeback4_1_button_result.lift()
 
     def comeback4_1_result(self):
@@ -215,7 +215,7 @@ class App(ctk.CTk):
             self.withdraw()
             
             self.button_image_start= ctk.CTkImage(Image.open("modules\\images\\button_start.png"), size=(282, 64))
-            self.button_start = CustomButton(self.toplevel_window_with_text, image= self.button_image_start, command=self.new_window_with_text_result)
+            self.button_start = CustomButton(self.toplevel_window_with_text, fg_color="#282C43" ,image= self.button_image_start, command=self.new_window_with_text_result)
             self.button_start.place(x = 499, y=666)
             
             self.input_text_window= ctk.CTkImage(Image.open("modules\\images\\text_input.png"), size=(451, 516))
@@ -223,9 +223,9 @@ class App(ctk.CTk):
             self.input_text.place(x = 414, y=85)
             self.input_text.bind("<Control-v>", self.paste_text)
 
-            self.home_image= ctk.CTkImage(Image.open("modules\\images\\home.png"), size=(50, 50))
-            self.comeback3_button=CustomButton(self.toplevel_window_with_text,width=50, height=50, image = self.home_image, fg_color="#D4DEE6", command = self.comeback3 )
-            self.comeback3_button.place(x=390, y=680)
+            self.home_image= ctk.CTkImage(Image.open("modules\\images\\home.png"), size=(100, 20))
+            self.comeback3_button=CustomButton(self.toplevel_window_with_text,width=100, height=20, image = self.home_image, fg_color="#D4DEE6", command = self.comeback3 )
+            self.comeback3_button.place(x=50, y=70)
 
             self.image_back= ctk.CTkImage(Image.open("modules\\images\\background_image_for_second_frame.png"), size= (1280, 832))
             self.label_image= ctk.CTkLabel(self.toplevel_window_with_text, image= self.image_back, text="")
@@ -250,7 +250,7 @@ class App(ctk.CTk):
         self.withdraw()
         
         self.button_image_start2= ctk.CTkImage(Image.open("modules\\images\\button_start.png"), size=(282, 64))
-        self.button_start2 = CustomButton(self.toplevel_window_with_image, image= self.button_image_start2, command = self.new_window_with_image_result)
+        self.button_start2 = CustomButton(self.toplevel_window_with_image, fg_color="#282C43", image= self.button_image_start2, command = self.new_window_with_image_result)
         self.button_start2.place(x = 499, y=666)
   
         self.input_text_window2= ctk.CTkImage(Image.open("modules\\images\\text_input.png"), size=(451, 516))
@@ -261,9 +261,9 @@ class App(ctk.CTk):
         self.label_image= ctk.CTkLabel(self.toplevel_window_with_image, image= self.image_back2, text="")
         self.label_image.place(x= 0, y=0)
         
-        self.home_image= ctk.CTkImage(Image.open("modules\\images\\home.png"), size=(50, 50))
-        self.comeback2_button=CustomButton(self.toplevel_window_with_image,width=50, height=50, image = self.home_image, fg_color="#D4DEE6", command = self.comeback2 )
-        self.comeback2_button.place(x=390, y=680)
+        self.home_image= ctk.CTkImage(Image.open("modules\\images\\home.png"), size=(100, 20))
+        self.comeback2_button=CustomButton(self.toplevel_window_with_image,width=100, height=20, image = self.home_image, fg_color="#D4DEE6", command = self.comeback2 )
+        self.comeback2_button.place(x=50, y=70)
 
         self.download_image= ctk.CTkImage(Image.open("modules\\images\\download.png"), size=(50, 50))
         self.upload_button2=CustomButton(self.toplevel_window_with_image, fg_color="#D4DEE6",image=self.download_image,width=50, height=50, command=self.load_image )
@@ -300,7 +300,7 @@ class App(ctk.CTk):
         self.label_image.place(x= 0, y=0)
 
         self.button_image_start3= ctk.CTkImage(Image.open("modules\\images\\button_start.png"), size=(282, 64))
-        self.button_start3 = CustomButton(self.toplevel_window_with_file, image= self.button_image_start3, command=self.new_window_with_file_result )
+        self.button_start3 = CustomButton(self.toplevel_window_with_file,fg_color="#282C43", image= self.button_image_start3, command=self.new_window_with_file_result )
         self.button_start3.place(x = 499, y=666)
         self.button_start3.lift()
         
@@ -308,9 +308,9 @@ class App(ctk.CTk):
         self.input_text3.place(x = 414, y=85)
         self.input_text3.lift()
 
-        self.home_image= ctk.CTkImage(Image.open("modules\\images\\home.png"), size=(50, 50))
-        self.comeback_button=CustomButton(self.toplevel_window_with_file,width=50, height=50, image = self.home_image, fg_color="#D4DEE6", command = self.comeback )
-        self.comeback_button.place(x=390, y=680)
+        self.home_image= ctk.CTkImage(Image.open("modules\\images\\home.png"), size=(100, 20))
+        self.comeback_button=CustomButton(self.toplevel_window_with_file,width=100, height=20, image = self.home_image, fg_color="#D4DEE6", command = self.comeback )
+        self.comeback_button.place(x=50, y=70)
         self.comeback_button.lift()
 
         self.download_image= ctk.CTkImage(Image.open("modules\\images\\download.png"), size=(50, 50))
@@ -367,9 +367,9 @@ class App(ctk.CTk):
         self.input_text1_result.insert("1.0", text)
         self.input_text1_result.lift()
 
-        self.home_image= ctk.CTkImage(Image.open("modules\\images\\home.png"), size=(50, 50))
-        self.comeback4_button=CustomButton(self.toplevel_window_with_text_result,width=50, height=50, image = self.home_image, fg_color="#D4DEE6", command = self.comeback4 )
-        self.comeback4_button.place(x=900, y=690)
+        self.home_image= ctk.CTkImage(Image.open("modules\\images\\home.png"), size=(100, 20))
+        self.comeback4_button=CustomButton(self.toplevel_window_with_text_result,width=100, height=20, image = self.home_image, fg_color="#D4DEE6", command = self.comeback4 )
+        self.comeback4_button.place(x=50, y=70)
         self.comeback4_button.lift()
 
         self.input_text11_result = ctk.CTkTextbox(self.toplevel_window_with_text_result, width=451, height=100, fg_color="#D4DEE6", text_color="black", wrap="word")
@@ -393,9 +393,9 @@ class App(ctk.CTk):
         self.input_text2_result.place(x = 415.5, y=85)
         self.input_text2_result.lift()
 
-        self.home_image= ctk.CTkImage(Image.open("modules\\images\\home.png"), size=(50, 50))
-        self.comeback5_button=CustomButton(self.toplevel_window_with_image_result,width=50, height=50, image = self.home_image, fg_color="#D4DEE6", command = self.comeback5 )
-        self.comeback5_button.place(x=900, y=690)
+        self.home_image= ctk.CTkImage(Image.open("modules\\images\\home.png"), size=(100, 20))
+        self.comeback5_button=CustomButton(self.toplevel_window_with_image_result,width=100, height=20, image = self.home_image, fg_color="#D4DEE6", command = self.comeback5 )
+        self.comeback5_button.place(x=50, y=70)
         self.comeback5_button.lift()
 
         self.input_text21_result = ctk.CTkEntry(self.toplevel_window_with_image_result, width=451, height= 100, fg_color="#D4DEE6")
@@ -425,9 +425,9 @@ class App(ctk.CTk):
         self.input_text33_result.place(x = 415.5, y=666)
         self.input_text33_result.lift()
 
-        self.home_image= ctk.CTkImage(Image.open("modules\\images\\home.png"), size=(50, 50))
-        self.comeback6_button=CustomButton(self.toplevel_window_with_result,width=50, height=50, image = self.home_image, fg_color="#D4DEE6", command = self.comeback6 )
-        self.comeback6_button.place(x=900, y=690)
+        self.home_image= ctk.CTkImage(Image.open("modules\\images\\home.png"), size=(100, 20))
+        self.comeback6_button=CustomButton(self.toplevel_window_with_result,width=100, height=20, image = self.home_image, fg_color="#D4DEE6", command = self.comeback6 )
+        self.comeback6_button.place(x=50, y=70)
         self.comeback6_button.lift()
     def comeback6(self):
             self.toplevel_window_with_result.destroy()
