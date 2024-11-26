@@ -46,9 +46,9 @@ class App(ctk.CTk):
         self.button3 = CustomButton(self.main_frame, text="IMAGE", command = self.new_window_with_image)
         self.button3.place(x= 1010, y=670)
 
-        self.button_image = Image.open("modules\\images\\image.png")
-        self.button4 = CustomButton(self.main_frame, image=self.button_image)
-        self.button3.place(x= 770, y=750)
+        self.button_image = ctk.CTkImage(Image.open("modules\\images\\image.png"), size=(200,30))
+        self.button4 = CustomButton(self.main_frame, text="COMPARISON", command=self.new_window_with_comparison)
+        self.button4.place(x= 755, y=520)
 
         self.bg_image = Image.open("modules\\images\\new_menu_frame.png")
         self.bg_image= self.bg_image.resize((self.winfo_width(), self.winfo_height()))
@@ -67,6 +67,120 @@ class App(ctk.CTk):
         self.button1.lift()
         self.button2.lift()
         self.button3.lift()
+        self.button4.lift()
+
+    def new_window_with_comparison(self):
+            self.toplevel_window_with_comparison = ToplevelWindow(self) 
+            self.toplevel_window_with_comparison.geometry(f"{self.APP_WIDTH}x{self.APP_HEIGHT}+{self.X}+{self.Y}")
+            self.withdraw()
+
+            self.image_back= ctk.CTkImage(Image.open("modules\\images\\background_image_for_second_frame.png"), size= (1280, 832))
+            self.label_image4= ctk.CTkLabel(self.toplevel_window_with_comparison, image= self.image_back, text="")
+            self.label_image4.place(x= 0, y=0)
+
+            self.button_image_start= ctk.CTkImage(Image.open("modules\\images\\button_start.png"), size=(282, 64))
+            self.button_start4 = CustomButton(self.toplevel_window_with_comparison, image= self.button_image_start, command=self.new_window_with_comparison_result)
+            self.button_start4.place(x = 489, y=666)
+            self.button_start4.lift()
+
+            self.input_text4_1 = ctk.CTkTextbox(self.toplevel_window_with_comparison, width=451, height=516, fg_color="#D4DEE6", text_color="black", wrap="word")
+            self.input_text4_1.place(x = 100, y=85)
+            self.input_text4_1.lift()
+
+            self.input_text4_2 = ctk.CTkTextbox(self.toplevel_window_with_comparison, width=451, height=516, fg_color="#D4DEE6", text_color="black", wrap="word")
+            self.input_text4_2.place(x = 580, y=85)
+            self.input_text4_2.lift()
+
+            self.home_image= ctk.CTkImage(Image.open("modules\\images\\home.png"), size=(50, 50))
+            self.comeback4_1_button=CustomButton(self.toplevel_window_with_comparison,width=50, height=50, image = self.home_image, fg_color="#D4DEE6", command = self.comeback4_1 )
+            self.comeback4_1_button.place(x=380, y=680)
+            self.comeback4_1_button.lift()
+
+            self.download_image= ctk.CTkImage(Image.open("modules\\images\\download.png"), size=(50, 50))
+            self.upload4_1_button=CustomButton(self.toplevel_window_with_comparison,width=50, height=50,image=self.download_image, fg_color="#D4DEE6", command=self.load_file4_1 )
+            self.upload4_1_button.place(x=100, y=680)
+            self.upload4_1_button.lift()
+
+            self.upload4_2_button=CustomButton(self.toplevel_window_with_comparison,width=50, height=50,image=self.download_image, fg_color="#D4DEE6", command=self.load_file4_2 )
+            self.upload4_2_button.place(x=963, y=680)
+            self.upload4_2_button.lift()
+            
+    def comeback4_1(self):
+            self.toplevel_window_with_comparison.destroy()
+            self.deiconify()  
+
+    def load_file4_1(self):
+            file_path = filedialog.askopenfilename(title="Выберите файл",filetypes=[("Text Files", "*.txt"),("PDF Files", "*.pdf"), ("Word Documents", "*.docx"), ("All Files", "*.*")])
+            if file_path:
+                try:
+                    if file_path.endswith(".txt"):
+                        # Чтение текстового файла
+                        with open(file_path, "r", encoding="utf-8") as file:
+                            content = file.read()
+                    elif file_path.endswith(".docx"):
+                        # Чтение Word-документа
+                        doc = Document(file_path)
+                        content = "\n".join([para.text for para in doc.paragraphs])
+                    elif file_path.endswith(".pdf"):
+                
+                        with open(file_path, "rb") as file:
+                            reader = PyPDF2.PdfReader(file)
+                            content = ""
+                            for page in reader.pages:
+                                content += page.extract_text()
+                    else:
+                        print("Неподдерживаемый формат файла")
+                        return
+
+                    # Очистка и вставка текста в input_text3
+                    self.input_text4_1.delete("1.0", "end")  # Очистить текстовое поле
+                    self.input_text4_1.insert("1.0", content)  # Вставить текст
+
+                except Exception as e:
+                    print(f"Ошибка при чтении файла: {e}")
+
+    def load_file4_2(self):
+            file_path = filedialog.askopenfilename(title="Выберите файл",filetypes=[("Text Files", "*.txt"),("PDF Files", "*.pdf"), ("Word Documents", "*.docx"), ("All Files", "*.*")])
+            if file_path:
+                try:
+                    if file_path.endswith(".txt"):
+                        # Чтение текстового файла
+                        with open(file_path, "r", encoding="utf-8") as file:
+                            content = file.read()
+                    elif file_path.endswith(".docx"):
+                        # Чтение Word-документа
+                        doc = Document(file_path)
+                        content = "\n".join([para.text for para in doc.paragraphs])
+                    elif file_path.endswith(".pdf"):
+                
+                        with open(file_path, "rb") as file:
+                            reader = PyPDF2.PdfReader(file)
+                            content = ""
+                            for page in reader.pages:
+                                content += page.extract_text()
+                    else:
+                        print("Неподдерживаемый формат файла")
+                        return
+
+                    # Очистка и вставка текста в input_text3
+                    self.input_text4_2.delete("1.0", "end")  # Очистить текстовое поле
+                    self.input_text4_2.insert("1.0", content)  # Вставить текст
+
+                except Exception as e:
+                    print(f"Ошибка при чтении файла: {e}")
+
+    def new_window_with_comparison_result(self):
+        self.toplevel_window_with_comparison_result = ToplevelWindow(self) 
+        self.toplevel_window_with_comparison_result.geometry(f"{self.APP_WIDTH}x{self.APP_HEIGHT}+{self.X}+{self.Y}")    
+        if not self.input_text4_1.get("1.0","end").strip() or not self.input_text4_2.get("1.0","end").strip():
+             self.toplevel_window_with_comparison_result.destroy()
+             return
+        text4_1 = self.input_text4_1.get("1.0","end")
+        text4_2 = self.input_text4_2.get("1.0","end")             
+        self.toplevel_window_with_comparison.withdraw()
+
+        
+
     def new_window_with_text(self):
             
             self.toplevel_window_with_text = ToplevelWindow(self) 
@@ -87,7 +201,6 @@ class App(ctk.CTk):
             self.comeback3_button.place(x=390, y=680)
 
             self.image_back= ctk.CTkImage(Image.open("modules\\images\\background_image_for_second_frame.png"), size= (1280, 832))
-            #путь к фрей
             self.label_image= ctk.CTkLabel(self.toplevel_window_with_text, image= self.image_back, text="")
             self.label_image.place(x= 0, y=0)
             
