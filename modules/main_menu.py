@@ -267,20 +267,29 @@ class App(ctk.CTk):
         self.toplevel_window_with_file = ToplevelWindow(self) 
         self.toplevel_window_with_file.geometry(f"{self.APP_WIDTH}x{self.APP_HEIGHT}+{self.X}+{self.Y}")
         self.withdraw()
+
+        self.image_back3= ctk.CTkImage(Image.open("modules\\images\\back_for_file.png"), size= (1280, 832))
+        self.label_image= ctk.CTkLabel(self.toplevel_window_with_file, image= self.image_back3, text="")
+        self.label_image.place(x= 0, y=0)
+
         self.button_image_start3= ctk.CTkImage(Image.open("modules\\images\\button_start.png"), size=(282, 64))
         self.button_start3 = CustomButton(self.toplevel_window_with_file, image= self.button_image_start3, command=self.new_window_with_file_result )
         self.button_start3.place(x = 499, y=666)
+        self.button_start3.lift()
         
         self.input_text3 = ctk.CTkTextbox(self.toplevel_window_with_file, width=451, height=516, fg_color="#D4DEE6", text_color="black", wrap="word")
         self.input_text3.place(x = 414, y=85)
+        self.input_text3.lift()
 
         self.home_image= ctk.CTkImage(Image.open("modules\\images\\home.png"), size=(50, 50))
         self.comeback_button=CustomButton(self.toplevel_window_with_file,width=50, height=50, image = self.home_image, fg_color="#D4DEE6", command = self.comeback )
         self.comeback_button.place(x=390, y=680)
-        
+        self.comeback_button.lift()
+
         self.download_image= ctk.CTkImage(Image.open("modules\\images\\download.png"), size=(50, 50))
         self.upload_button=CustomButton(self.toplevel_window_with_file,width=50, height=50,image=self.download_image, fg_color="#D4DEE6", command=self.load_file )
         self.upload_button.place(x=840, y=680)
+        self.upload_button.lift()
 
     def comeback(self):
             self.toplevel_window_with_file.destroy()
