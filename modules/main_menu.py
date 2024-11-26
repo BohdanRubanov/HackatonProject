@@ -78,6 +78,7 @@ class App(ctk.CTk):
             self.input_text_window= ctk.CTkImage(Image.open("modules\\images\\text_input.png"), size=(451, 516))
             self.input_text = ctk.CTkTextbox(self.toplevel_window_with_text, width=451, height=516, fg_color="#D4DEE6", text_color="black", wrap="word")
             self.input_text.place(x = 414, y=85)
+            self.input_text.bind("<Control-v>", self.paste_text)
 
             self.home_image= ctk.CTkImage(Image.open("modules\\images\\home.png"), size=(50, 50))
             self.comeback3_button=CustomButton(self.toplevel_window_with_text,width=50, height=50, image = self.home_image, fg_color="#D4DEE6", command = self.comeback3 )
@@ -96,7 +97,11 @@ class App(ctk.CTk):
             self.toplevel_window_with_text.destroy()
             self.deiconify()
             
-
+    def paste_text(self, event=None):
+            # Отримуємо текст із буфера обміну
+            clipboard_text = self.root.clipboard_get()
+            self.input_text.insert("insert", clipboard_text)
+            
     def new_window_with_image(self):
         self.toplevel_window_with_image = ToplevelWindow(self, width= 451, height= 516) 
         self.toplevel_window_with_image.geometry(f"{self.APP_WIDTH}x{self.APP_HEIGHT}+{self.X}+{self.Y}")
