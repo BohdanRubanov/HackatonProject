@@ -74,35 +74,35 @@ class App(ctk.CTk):
             self.toplevel_window_with_comparison.geometry(f"{self.APP_WIDTH}x{self.APP_HEIGHT}+{self.X}+{self.Y}")
             self.withdraw()
 
-            self.image_back= ctk.CTkImage(Image.open("modules\\images\\background_image_for_second_frame.png"), size= (1280, 832))
+            self.image_back= ctk.CTkImage(Image.open("modules\\images\\back_for_comparison.png"), size= (1280, 832))
             self.label_image4= ctk.CTkLabel(self.toplevel_window_with_comparison, image= self.image_back, text="")
             self.label_image4.place(x= 0, y=0)
 
             self.button_image_start= ctk.CTkImage(Image.open("modules\\images\\button_start.png"), size=(282, 64))
             self.button_start4 = CustomButton(self.toplevel_window_with_comparison, image= self.button_image_start, command=self.new_window_with_comparison_result)
-            self.button_start4.place(x = 489, y=666)
+            self.button_start4.place(x = 489, y=706)
             self.button_start4.lift()
 
             self.input_text4_1 = ctk.CTkTextbox(self.toplevel_window_with_comparison, width=451, height=516, fg_color="#D4DEE6", text_color="black", wrap="word")
-            self.input_text4_1.place(x = 100, y=85)
+            self.input_text4_1.place(x = 80, y=140)
             self.input_text4_1.lift()
 
             self.input_text4_2 = ctk.CTkTextbox(self.toplevel_window_with_comparison, width=451, height=516, fg_color="#D4DEE6", text_color="black", wrap="word")
-            self.input_text4_2.place(x = 580, y=85)
+            self.input_text4_2.place(x = 750, y=140)
             self.input_text4_2.lift()
 
             self.home_image= ctk.CTkImage(Image.open("modules\\images\\home.png"), size=(50, 50))
             self.comeback4_1_button=CustomButton(self.toplevel_window_with_comparison,width=50, height=50, image = self.home_image, fg_color="#D4DEE6", command = self.comeback4_1 )
-            self.comeback4_1_button.place(x=380, y=680)
+            self.comeback4_1_button.place(x=380, y=720)
             self.comeback4_1_button.lift()
 
             self.download_image= ctk.CTkImage(Image.open("modules\\images\\download.png"), size=(50, 50))
             self.upload4_1_button=CustomButton(self.toplevel_window_with_comparison,width=50, height=50,image=self.download_image, fg_color="#D4DEE6", command=self.load_file4_1 )
-            self.upload4_1_button.place(x=100, y=680)
+            self.upload4_1_button.place(x=80, y=720)
             self.upload4_1_button.lift()
 
             self.upload4_2_button=CustomButton(self.toplevel_window_with_comparison,width=50, height=50,image=self.download_image, fg_color="#D4DEE6", command=self.load_file4_2 )
-            self.upload4_2_button.place(x=963, y=680)
+            self.upload4_2_button.place(x=1137, y=720)
             self.upload4_2_button.lift()
             
     def comeback4_1(self):
@@ -178,6 +178,10 @@ class App(ctk.CTk):
         text4_1 = self.input_text4_1.get("1.0","end")
         text4_2 = self.input_text4_2.get("1.0","end")             
         self.toplevel_window_with_comparison.withdraw()
+
+        self.image_back_comparison_result= ctk.CTkImage(Image.open("modules\\images\\back_for_file.png"), size= (1280, 832))
+        self.label_image_comparison_result= ctk.CTkLabel(self.toplevel_window_with_comparison_result, image= self.image_back_comparison_result, text="")
+        self.label_image_comparison_result.place(x= 0, y=0)
 
         
 
