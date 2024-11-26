@@ -2,12 +2,7 @@ from g4f.client import Client
 
 client = Client()
 # question = input("Введите свой вопрос")
-response = client.chat.completions.create(
-    model="gpt-4o-mini",
-    messages=[{"role": "user", "content": "У тебя есть доступ в интернет?"}],
 
-)
-print(response.choices[0].message.content)
 
 # from langchain.chains import LLMChain
 # from langchain.prompts import PromptTemplate

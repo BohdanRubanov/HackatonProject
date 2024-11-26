@@ -7,6 +7,7 @@ from PIL import Image, ImageTk
 from tkinter import filedialog
 from docx import Document
 import PyPDF2
+from modules.ai import client
 
 # Создание констант с размерами окна
 APP_WIDTH = 1280
