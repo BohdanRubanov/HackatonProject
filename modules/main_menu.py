@@ -144,7 +144,7 @@ class App(ctk.CTk):
         self.comeback_button=CustomButton(self.toplevel_window_with_file,width=50, height=50, fg_color="#D4DEE6", command=self.load_file )
         self.comeback_button.place(x=290, y=680)
         
-        self.download_image= ctk.CTkImage(Image.open("modules\\images\\download.png"), size=(50, 50))
+        self.download_image= ctk.CTkImage(Image.open("modules\\images\\download_no_background.png"), size=(50, 50))
         self.upload_button=CustomButton(self.toplevel_window_with_file,width=50, height=50,image=self.download_image, fg_color="#D4DEE6", command=self.load_file )
         self.upload_button.place(x=390, y=680)
     def load_file(self):
