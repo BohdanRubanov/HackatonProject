@@ -217,11 +217,6 @@ class App(ctk.CTk):
             self.button_image_start= ctk.CTkImage(Image.open("modules\\images\\button_start.png"), size=(282, 64))
             self.button_start = CustomButton(self.toplevel_window_with_text, fg_color="#282C43" ,image= self.button_image_start, command=self.new_window_with_text_result)
             self.button_start.place(x = 499, y=666)
-            
-            self.input_text_window= ctk.CTkImage(Image.open("modules\\images\\text_input.png"), size=(451, 516))
-            self.input_text = ctk.CTkTextbox(self.toplevel_window_with_text, width=451, height=516, fg_color="#D4DEE6", text_color="black", wrap="word")
-            self.input_text.place(x = 414, y=85)
-            self.input_text.bind("<Control-v>", self.paste_text)
 
             self.home_image= ctk.CTkImage(Image.open("modules\\images\\home.png"), size=(100, 20))
             self.comeback3_button=CustomButton(self.toplevel_window_with_text,width=100, height=20, image = self.home_image, fg_color="#D4DEE6", command = self.comeback3 )
@@ -230,6 +225,12 @@ class App(ctk.CTk):
             self.image_back= ctk.CTkImage(Image.open("modules\\images\\background_image_for_second_frame.png"), size= (1280, 832))
             self.label_image= ctk.CTkLabel(self.toplevel_window_with_text, image= self.image_back, text="")
             self.label_image.place(x= 0, y=0)
+
+            self.input_text_window= ctk.CTkImage(Image.open("modules\\images\\text_input.png"), size=(451, 516))
+            self.input_text = ctk.CTkTextbox(self.toplevel_window_with_text, width=451, height=516, fg_color="#D4DEE6", text_color="black", wrap="word")
+            self.input_text.place(x = 414, y=85)
+            self.input_text.bind("<Control-v>", self.paste_text)
+            self.input_text.bind("<Key>", self.limit_text)
             
             self.comeback3_button.lift()
             self.input_text.focus_set()
@@ -238,12 +239,34 @@ class App(ctk.CTk):
     def comeback3(self):
             self.toplevel_window_with_text.destroy()
             self.deiconify()
+
+    def limit_text(self, event):
+        # Дозволяємо тільки введення до 512 символів
+        current_text = self.input_text.get("1.0", "end").strip()
+        if len(current_text) >= 512 and event.keysym not in ("BackSpace", "Delete", "Left", "Right", "Up", "Down"):
+            # Забороняємо введення додаткових символів
+            return "break"
             
     def paste_text(self, event=None):
             # Отримуємо текст із буфера обміну
-            clipboard_text = self.root.clipboard_get()
-            self.input_text.insert("insert", clipboard_text)
-
+            clipboard_text = self.clipboard_get()
+    
+            # Поточний текст у віджеті
+            current_text = self.input_text.get("1.0", "end").strip()
+    
+            # Перевіряємо, чи вставка перевищить обмеження
+            if len(current_text) + len(clipboard_text) > 512:
+                #Вираховуємо кількість дозволених символів для вставки
+                allowed_length = 512 - len(current_text)
+        
+                #Вставляємо лише допустиму кількість символів
+                self.input_text.insert("insert", clipboard_text[:allowed_length])
+            else:
+                # Вставляємо весь текст з буфера обміну
+                self.input_text.insert("insert", clipboard_text)
+            print (len(clipboard_text))
+            return "break"
+            
     def new_window_with_image(self):
         self.toplevel_window_with_image = ToplevelWindow(self, width= 451, height= 516) 
         self.toplevel_window_with_image.geometry(f"{self.APP_WIDTH}x{self.APP_HEIGHT}+{self.X}+{self.Y}")
@@ -344,6 +367,7 @@ class App(ctk.CTk):
                     else:
                         print("Неподдерживаемый формат файла")
                         return
+                    content = content[:512]
 
                     # Очистка и вставка текста в input_text3
                     self.input_text3.delete("1.0", "end")  # Очистить текстовое поле
