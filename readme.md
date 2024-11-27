@@ -48,7 +48,7 @@
 ---
 
 ## 🎨 Дизайн  
-- **Figma прототип**: [Посилання на дизайн](https://figma.com/your-design-link) 
+- **Figma прототип**: [Посилання на дизайн](https://www.figma.com/design/sFY4snEzu13SwkJ6b7E5Zp/Untitled?t=zDfVcgbIGuJxyJSi-0) 
 
 ## 🛠 Використані технології
 
