@@ -11,6 +11,7 @@ from modules.ai import client
 from modules.plagiat_checker import detector
 from modules.lecs_checker import assess_text_originality
 from difflib import SequenceMatcher
+from modules.test_plagiat import wiki_wiki
 
 # Создание констант с размерами окна
 APP_WIDTH = 1280
@@ -383,7 +384,7 @@ class App(ctk.CTk):
                     else:
                         print("Неподдерживаемый формат файла")
                         return
-                    content = content[:512]
+                    self.content = self.content[:512]
 
                     # Очистка и вставка текста в input_text3
                     self.input_text3.delete("1.0", "end")  # Очистить текстовое поле
@@ -394,20 +395,32 @@ class App(ctk.CTk):
     
     def new_window_with_text_result(self):
         text = self.input_text.get("1.0","end")  
+        
         response = client.chat.completions.create(
         model="gpt-4o-mini",
-        messages=[{"role": "user", "content": f"Привет ты учитель и проверяешь учеников на честность , они написали текст сами или текст написала нейросеть . Ты сможешь проверить  текст ученика ?  Если тогда можешь давать ответ одним словом да или нет , вероятность написания текста нейросетью , вероятность написания человеком ,вероятность что человек взял текст из интернета  . Молодец , можно я тебя немного исправлю . Если ты видишь художественные произведения (сказки ,фантастика и подобные ) скорее всего написал человек .Также если видишь что текст похож на научный (слишком много цифр ) то скорее всего этот текст взят из интернета . Ответ давай в процентах. Этот текст написала нейросеть? Вот сам текст: {text}"}]
+        messages=[{"role": "user", "content": f"Привет ты учитель и проверяешь учеников на честность , они написали текст сами или текст написала нейросеть . Тебе нужно написать, вероятность написания текста нейросетью , вероятность написания человеком ,вероятность что человек взял текст из интернета  .Также если видишь что текст похож на научный (слишком много цифр ) то скорее всего этот текст взят из интернета . Ответ напиши в процентах. Вот сам текст: {text}"}]
 )
         self.result_ai = response.choices[0].message.content
         print(self.result_ai)
+        
         result = detector(text)
 
 
         self.result_plagiat= result[0]['score']  
         self.result_plagiat = int(self.result_plagiat)*100
+        
+        wiki_theme = text.split(" ")[0]
+        print(wiki_theme)
+        page = wiki_wiki.page(wiki_theme)
+        print(page.text[:500])
+        match = SequenceMatcher(None, text, page.text[:500])
+
+        result = match.ratio() * 100 
+        
+        print(result)
 
 
-        self.final_result = f"Перевірено ШІ: {self.result_ai} \nПеревірено на ознаки автоматичної генерації: {self.result_plagiat}% \nПеревірено на лексичну різноманітність: {assess_text_originality(text)}"
+        self.final_result = f"Перевірено ШІ: {self.result_ai} \nПеревірено на ознаки автоматичної генерації: {self.result_plagiat}% \nПеревірено на лексичну різноманітність: {assess_text_originality(text)} \n 'Відсоток плагіату: {result:.2f}%'"
         
         self.toplevel_window_with_text_result = ToplevelWindow(self) 
         self.toplevel_window_with_text_result.geometry(f"{self.APP_WIDTH}x{self.APP_HEIGHT}+{self.X}+{self.Y}")    
